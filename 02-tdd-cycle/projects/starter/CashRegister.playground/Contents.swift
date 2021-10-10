@@ -32,10 +32,21 @@ import XCTest
 
 class CashRegister {
     
+    // MARK: - Properties
+        
     var availableFunds: Decimal
+    var transactionTotal: Decimal = 0
     
+    // MARK: - Lifecycle
+        
     init(availableFunds: Decimal) {
         self.availableFunds = availableFunds
+    }
+        
+    // MARK: - Helpers
+    
+    func addItem(_ cost: Decimal) {
+        transactionTotal = cost
     }
     
 }
@@ -43,12 +54,32 @@ class CashRegister {
 
 class CashRegisterTests: XCTestCase {
     
+    var availableFunds: Decimal!
+    var sut: CashRegister!
+    
+    override func setUp() {
+        super.setUp()
+        availableFunds = 100
+        sut = CashRegister(availableFunds: availableFunds)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        // テスト中は同じインスタンスが使われるのでsetUp()で代入した値を必ずnilにすること
+        availableFunds = nil
+        sut = nil
+    }
+    
     // test*という名称にする
     func testInitAvailableFunds_setsAvailableFunds() {
-        let availableFunds = Decimal(100)
-        // sut: system under test
-        let sut = CashRegister(availableFunds: availableFunds)
         XCTAssertEqual(sut.availableFunds, availableFunds)
+    }
+    
+    func testAddItem_oneItem_addCostToTransactionTotal() {        
+        let itemCost = Decimal(42)
+        sut.addItem(itemCost)
+        
+        XCTAssertEqual(sut.transactionTotal, itemCost)
     }
     
 }
