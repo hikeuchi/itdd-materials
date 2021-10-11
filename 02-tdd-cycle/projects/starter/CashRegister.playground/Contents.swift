@@ -34,8 +34,8 @@ class CashRegister {
     
     // MARK: - Properties
         
-    var availableFunds: Decimal
-    var transactionTotal: Decimal = 0
+    var availableFunds: Decimal  // 使用可能金額
+    var transactionTotal: Decimal = 0  // 取引
     
     // MARK: - Lifecycle
         
@@ -49,6 +49,11 @@ class CashRegister {
         transactionTotal += cost
     }
     
+    func acceptCashPayment(_ payment: Decimal) {
+        transactionTotal -= payment
+        availableFunds += payment
+    }
+    
 }
 
 
@@ -56,12 +61,15 @@ class CashRegisterTests: XCTestCase {
     
     var availableFunds: Decimal!
     var itemCost: Decimal!
+    var payment: Decimal!
+    
     var sut: CashRegister!
     
     override func setUp() {
         super.setUp()
         availableFunds = 100
         itemCost = 42
+        payment = 40
         // sut: system under test
         sut = CashRegister(availableFunds: availableFunds)
     }
@@ -70,7 +78,8 @@ class CashRegisterTests: XCTestCase {
         super.tearDown()
         // テスト中は同じインスタンスが使われるのでsetUp()で代入した値を必ずnilにすること
         availableFunds = nil
-        itemCost = 42
+        itemCost = nil
+        payment = nil
         sut = nil
     }
     
@@ -95,6 +104,30 @@ class CashRegisterTests: XCTestCase {
         XCTAssertEqual(sut.transactionTotal, expectedTotal)
     }
     
+    // MARK: - Challenge
+    
+    func testAcceptCashPayment_subtractsPaymentFromTransactionTotal() {
+        givenTransactionInProgress()
+        let expected = sut.transactionTotal - payment
+        
+        sut.acceptCashPayment(payment)
+        
+        XCTAssertEqual(sut.transactionTotal, expected)
+    }
+    
+    func testAcceptCashPayment_addsPaymentToAvailableFunds() {
+        givenTransactionInProgress()
+        let expected = sut.availableFunds + payment
+        
+        sut.acceptCashPayment(payment)
+        
+        XCTAssertEqual(sut.availableFunds, expected)
+    }
+    
+    func givenTransactionInProgress() {
+        sut.addItem(50)
+        sut.addItem(100)
+    }
 }
 
 CashRegisterTests.defaultTestSuite.run()
