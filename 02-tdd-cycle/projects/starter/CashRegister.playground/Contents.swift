@@ -46,7 +46,7 @@ class CashRegister {
     // MARK: - Helpers
     
     func addItem(_ cost: Decimal) {
-        transactionTotal = cost
+        transactionTotal += cost
     }
     
 }
@@ -55,11 +55,14 @@ class CashRegister {
 class CashRegisterTests: XCTestCase {
     
     var availableFunds: Decimal!
+    var itemCost: Decimal!
     var sut: CashRegister!
     
     override func setUp() {
         super.setUp()
         availableFunds = 100
+        itemCost = 42
+        // sut: system under test
         sut = CashRegister(availableFunds: availableFunds)
     }
     
@@ -67,6 +70,7 @@ class CashRegisterTests: XCTestCase {
         super.tearDown()
         // テスト中は同じインスタンスが使われるのでsetUp()で代入した値を必ずnilにすること
         availableFunds = nil
+        itemCost = 42
         sut = nil
     }
     
@@ -75,11 +79,20 @@ class CashRegisterTests: XCTestCase {
         XCTAssertEqual(sut.availableFunds, availableFunds)
     }
     
-    func testAddItem_oneItem_addCostToTransactionTotal() {        
-        let itemCost = Decimal(42)
+    func testAddItem_oneItem_addCostToTransactionTotal() {
         sut.addItem(itemCost)
         
         XCTAssertEqual(sut.transactionTotal, itemCost)
+    }
+    
+    func testAddItem_twoItems_addsCostsToTransactionTotal() {
+        let itemCost2 = Decimal(20)
+        let expectedTotal = itemCost + itemCost2
+        
+        sut.addItem(itemCost)
+        sut.addItem(itemCost2)
+        
+        XCTAssertEqual(sut.transactionTotal, expectedTotal)
     }
     
 }
