@@ -7,15 +7,24 @@
 //
 
 import XCTest
+import FitNess
 
 class AppModelTests: XCTestCase {
-
-    override func setUpWithError() throws {
-
-    }
-
-    override func tearDownWithError() throws {
-
-    }
-
+  
+  override func setUpWithError() throws {
+    
+  }
+  
+  override func tearDownWithError() throws {
+    
+  }
+  
+  func testAppModel_whenInitialized_isInNotStartedState() {
+    // sut: system under test
+    let sut = AppModel()
+    let initialState = sut.appState
+    XCTAssertEqual(initialState, AppState.notStarted)
+  }
+  
+  
 }
