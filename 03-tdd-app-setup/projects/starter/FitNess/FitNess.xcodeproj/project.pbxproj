@@ -14,6 +14,7 @@
 		0A9EB50B21C072F00062B66E /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EB50A21C072F00062B66E /* AppModel.swift */; };
 		0AA5E735219B9B4600B7A0D0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5E734219B9B4600B7A0D0 /* AppState.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
+		D0740115271D647B000B0CC9 /* StepCountControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0740114271D647B000B0CC9 /* StepCountControllerTests.swift */; };
 		D0F763B8271D4B080071084D /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F763B7271D4B080071084D /* AppModelTests.swift */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		0A9EB50A21C072F00062B66E /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		0AA5E734219B9B4600B7A0D0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0740114271D647B000B0CC9 /* StepCountControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountControllerTests.swift; sourceTree = "<group>"; };
 		D0F763AE271D4A4F0071084D /* FitNessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F763B7271D4B080071084D /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,10 +101,35 @@
 			path = "UI Layer";
 			sourceTree = "<group>";
 		};
-		D0F763AF271D4A4F0071084D /* FitNessTests */ = {
+		D0740111271D643B000B0CC9 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				D0740112271D6446000B0CC9 /* App Model */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		D0740112271D6446000B0CC9 /* App Model */ = {
 			isa = PBXGroup;
 			children = (
 				D0F763B7271D4B080071084D /* AppModelTests.swift */,
+			);
+			path = "App Model";
+			sourceTree = "<group>";
+		};
+		D0740113271D644F000B0CC9 /* UI Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D0740114271D647B000B0CC9 /* StepCountControllerTests.swift */,
+			);
+			path = "UI Layer";
+			sourceTree = "<group>";
+		};
+		D0F763AF271D4A4F0071084D /* FitNessTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0740111271D643B000B0CC9 /* Cases */,
+				D0740113271D644F000B0CC9 /* UI Layer */,
 			);
 			path = FitNessTests;
 			sourceTree = "<group>";
@@ -245,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0F763B8271D4B080071084D /* AppModelTests.swift in Sources */,
+				D0740115271D647B000B0CC9 /* StepCountControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
