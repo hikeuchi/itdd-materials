@@ -11,23 +11,33 @@ import FitNess
 
 class AppModelTests: XCTestCase {
   
+  var sut: AppModel!
+  
   override func setUpWithError() throws {
     
   }
   
   override func tearDownWithError() throws {
-    
+
+  }
+  
+  override func setUp() {
+    super.setUp()
+    // sut: system under test
+    sut = AppModel()
+  }
+  
+  override func tearDown() {
+    sut = nil
+    super.tearDown()
   }
   
   func testAppModel_whenInitialized_isInNotStartedState() {
-    // sut: system under test
-    let sut = AppModel()
     let initialState = sut.appState
     XCTAssertEqual(initialState, AppState.notStarted)
   }
   
   func testAppModel_whenStarted_isInInPrrogressState() {
-    let sut = AppModel()
     sut.start()
     let observedState = sut.appState
     XCTAssertEqual(observedState, AppState.inProgress)
