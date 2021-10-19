@@ -13,6 +13,8 @@ class StepCountControllerTests: XCTestCase {
   
   var sut: StepCountController!
   
+  // MARK: - Test LifeCycle
+  
   override func setUpWithError() throws {
     
   }
@@ -32,6 +34,12 @@ class StepCountControllerTests: XCTestCase {
     super.tearDown()
   }
   
+  // MARK: - When
+  
+  fileprivate func whenStartStopPauseCalled() {
+    sut.startStopPause(nil)
+  }
+  
   // MARK: - Initial State
   
   func testController_whenCreated_buttonLabelIsStart() {
@@ -43,7 +51,7 @@ class StepCountControllerTests: XCTestCase {
   // MARK: - In Progress
   
   func testController_whenStartTapped_appIsInProgress() {
-    sut.startStopPause(nil)
+    whenStartStopPauseCalled()
     
     let state = AppModel.instance.appState
     XCTAssertEqual(state, AppState.inProgress)
@@ -51,7 +59,7 @@ class StepCountControllerTests: XCTestCase {
   }
   
   func testController_whenStartTapped_buttonLabelIsPause() {
-    sut.startStopPause(nil)
+    whenStartStopPauseCalled()
 
     let text = sut.startButton.title(for: .normal)
     XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
