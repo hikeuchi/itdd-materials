@@ -32,6 +32,16 @@ class StepCountControllerTests: XCTestCase {
     super.tearDown()
   }
   
+  // MARK: - Initial State
+  
+  func testController_whenCreated_buttonLabelIsStart() {
+    sut.viewDidLoad()
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
+  }
+  
+  // MARK: - In Progress
+  
   func testController_whenStartTapped_appIsInProgress() {
     sut.startStopPause(nil)
     
