@@ -42,6 +42,7 @@ class StepCountControllerTests: XCTestCase {
 
   override func tearDown() {
     sut = nil
+    AppModel.instance.dataModel.goal = nil
     super.tearDown()
   }
 
@@ -69,6 +70,13 @@ class StepCountControllerTests: XCTestCase {
 
   // MARK: - Goal
 
+  func testDataMedel_whenGoalUpdate_updatesToNewGoal() {
+    // when
+    sut.updateGoal(newGoal: 50)
+    
+    // then
+    XCTAssertEqual(AppModel.instance.dataModel.goal, 50)
+  }
 
   // MARK: - In Progress
 
