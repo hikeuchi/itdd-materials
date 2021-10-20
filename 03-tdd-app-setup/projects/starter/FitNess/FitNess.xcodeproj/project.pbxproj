@@ -130,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D0740111271D643B000B0CC9 /* Cases */,
+				D0740113271D644F000B0CC9 /* UI Layer */,
 			);
 			path = FitNessTests;
 			sourceTree = "<group>";

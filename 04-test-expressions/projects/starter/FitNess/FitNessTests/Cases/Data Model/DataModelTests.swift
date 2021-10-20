@@ -23,10 +23,26 @@ class DataModelTests: XCTestCase {
     super.tearDown()
   }
   
+  // 目標が達成されるのはステップの数がゴールを超えたとき
+  func testModel_whenStepsReachGoal_goalIsReached() {
+    // given
+    
+    sut.goal = 1000
+    
+    // when
+    
+    sut.steps = 1000
+    
+    // then
+    
+    XCTAssertTrue(sut.goalReached)
+  }
+  
   // MARK: - Goal
   
   func testModel_whenStarted_goalIsNotReached() {
     XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
   }
+  
   
 }
