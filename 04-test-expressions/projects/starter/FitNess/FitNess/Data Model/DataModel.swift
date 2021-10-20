@@ -29,3 +29,13 @@
 import Foundation
 
 // Add the Data Model class here:
+
+class DataModel {
+  
+  // MARK: - Properties
+  
+  var goalReached: Bool {
+    return false
+  }
+  
+}
