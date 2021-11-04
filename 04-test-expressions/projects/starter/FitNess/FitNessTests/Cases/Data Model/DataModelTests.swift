@@ -44,5 +44,11 @@ class DataModelTests: XCTestCase {
     XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
   }
   
+  // MARK: - Nessie
+  
+  func testModel_whenStarted_userInNotCaught() {
+    XCTAssertFalse(sut.caught)
+  }
+  
   
 }
