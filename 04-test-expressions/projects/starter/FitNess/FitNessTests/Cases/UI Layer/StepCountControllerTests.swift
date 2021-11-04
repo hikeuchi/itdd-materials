@@ -37,7 +37,8 @@ class StepCountControllerTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    sut = StepCountController()
+    let rootController = loadRootViewController()
+    sut = rootController.stepController
   }
 
   override func tearDown() {
@@ -52,6 +53,12 @@ class StepCountControllerTests: XCTestCase {
     AppModel.instance.dataModel.goal = 1000
   }
   
+  /// AppをinProgressStateにする
+  func givenInProgress() {
+    givenGoalSet()
+    sut.startStopPause(nil)
+  }
+  
   // MARK: - When
 
   fileprivate func whenStartStopPauseCalled() {
@@ -61,9 +68,6 @@ class StepCountControllerTests: XCTestCase {
   // MARK: - Initial State
 
   func testController_whenCreated_buttonLabelIsStart() {
-    // given
-    sut.viewDidLoad()
-
     let text = sut.startButton.title(for: .normal)
     XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
   }
@@ -109,6 +113,17 @@ class StepCountControllerTests: XCTestCase {
     // when loaded, then
     let chaseView = sut.chaseView
     XCTAssertEqual(chaseView?.state, AppState.notStarted)
+  }
+  
+  func testChaseView_whenInProgress_viewIsInProgress() {
+    // given
+    givenInProgress()
+    
+    // then
+    let chaseView = sut.chaseView
+    XCTAssertEqual(chaseView?.state, AppState.inProgress)
+    
+    
   }
   
 }
