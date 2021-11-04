@@ -104,4 +104,11 @@ class StepCountControllerTests: XCTestCase {
   }
 
   // MARK: - Chase View
+  
+  func testChaseView_whenLoaded_isNotStarted() {
+    // when loaded, then
+    let chaseView = sut.chaseView
+    XCTAssertEqual(chaseView?.state, AppState.notStarted)
+  }
+  
 }
