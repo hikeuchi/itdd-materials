@@ -39,7 +39,8 @@ class DataModel {
   
   var goalReached: Bool {
     if let goal = goal,
-       steps >= goal {
+       steps >= goal,
+       !caught {
       return true
     }
     
@@ -49,7 +50,7 @@ class DataModel {
   // MARK: - Nessie
   
   let nessie = Nessie()
-  let distance: Double = 0
+  var distance: Double = 0
   
   var caught: Bool {
     return distance > 0 && nessie.distance >= distance
